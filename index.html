@@ -15,7 +15,7 @@
     --d:#EC8A33; --d-ink:#FFFFFF;
     --f:#E14B3C; --f-ink:#FFFFFF;
     --ease:cubic-bezier(.22,.61,.36,1);
-    --canH:clamp(58px,8.5vh,96px);
+    --canH:clamp(62px,9.2vh,112px);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -75,8 +75,9 @@
     padding:4px;flex:0 0 auto;transition:transform .18s var(--ease);}
   .chip img{height:var(--canH);width:auto;display:block;pointer-events:none;user-select:none;
     filter:drop-shadow(0 4px 9px rgba(0,0,0,.24));transition:filter .18s var(--ease);}
-  /* Bottom tray: fan the cans into one overlapping row, in order. */
-  .tray .chip{margin-left:clamp(-46px,-3.2vw,-26px);}
+  /* Bottom tray: fan the cans into one row, in order, with a light
+     overlap so each can stays easy to see and grab. */
+  .tray .chip{margin-left:clamp(-20px,-0.8vw,-6px);}
   .tray .chip:first-child{margin-left:0;}
   .chip:hover{transform:translateY(-10px);z-index:20;}
   .chip:hover img{filter:drop-shadow(0 12px 20px rgba(0,0,0,.32));}
@@ -97,7 +98,7 @@
   @media (max-width:560px){
     :root{--canH:clamp(48px,7vh,72px);}
     .tier{gap:8px;padding:6px 8px;}
-    .tray .chip{margin-left:-30px;}
+    .tray .chip{margin-left:-16px;}
   }
 </style>
 </head>
