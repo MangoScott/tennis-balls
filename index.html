@@ -24,7 +24,7 @@
     background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility; height:100vh; overflow:hidden;
   }
-  .wrap{max-width:1120px;height:100vh;margin:0 auto;padding:clamp(14px,2.4vh,24px) clamp(18px,5vw,40px);
+  .wrap{max-width:none;width:100%;height:100vh;margin:0 auto;padding:clamp(14px,2.4vh,24px) clamp(16px,2.5vw,36px);
     display:flex;flex-direction:column;}
 
   header{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
@@ -113,17 +113,12 @@
       <h1 id="title" contenteditable="true" spellcheck="false">Tennis Balls</h1>
     </div>
     <div class="toolbar">
-      <button class="btn primary" id="uploadBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V5M7 10l5-5 5 5M5 19h14"/></svg>
-        Add photos
-      </button>
       <button class="btn" id="resetBtn">Reset</button>
       <button class="btn" id="cleanBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
         Record
       </button>
     </div>
-    <input type="file" id="fileInput" accept="image/*" multiple hidden>
   </header>
 
   <div class="board" id="board">
@@ -173,7 +168,7 @@ const CANS = [
 ];
 (function(){
   "use strict";
-  const tray=document.getElementById('tray'), fileInput=document.getElementById('fileInput');
+  const tray=document.getElementById('tray');
   const zones=[...document.querySelectorAll('.items'),tray];
   let dragged=null;
   function makeChip(src){
@@ -202,11 +197,6 @@ const CANS = [
     zone.addEventListener('drop',e=>{e.preventDefault();clearHot();refresh();});
   });
   function refresh(){const n=tray.querySelectorAll('.chip').length;document.getElementById('count').textContent=n?n+' left':'';}
-  document.getElementById('uploadBtn').addEventListener('click',()=>fileInput.click());
-  fileInput.addEventListener('change',e=>{[...e.target.files].forEach(file=>{
-    if(!file.type.startsWith('image/'))return;const r=new FileReader();
-    r.onload=ev=>{tray.appendChild(makeChip(ev.target.result));refresh();};r.readAsDataURL(file);});
-    fileInput.value='';});
   document.getElementById('resetBtn').addEventListener('click',()=>{
     document.querySelectorAll('.items .chip').forEach(c=>tray.appendChild(c));refresh();});
   document.getElementById('cleanBtn').addEventListener('click',()=>document.body.classList.add('clean'));
