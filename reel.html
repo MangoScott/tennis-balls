@@ -80,6 +80,26 @@
     34%  {opacity:1; transform:translate(-50%,-50%) scale(1) rotate(var(--r1));}
     100% {opacity:0; transform:translate(-50%,-58%) scale(1.18) rotate(var(--r2));}
   }
+
+  /* ---- Outro / end card ---- */
+  .outro{position:absolute; inset:0; z-index:9; background:var(--bg);
+    display:grid; place-items:center; padding:0 9vw;
+    opacity:0; visibility:hidden; transition:opacity .55s var(--ease);}
+  .outro.show{opacity:1; visibility:visible;}
+  .outro-inner{width:100%; text-align:center;}
+  .outro .yt{display:inline-block; width:20vw; height:auto; margin-bottom:3vh;
+    filter:drop-shadow(0 1.4vh 3vh rgba(0,0,0,.16));}
+  .outro .cta{font-size:5vw; font-weight:600; letter-spacing:-.02em;
+    color:var(--ink-2); line-height:1.18; margin-bottom:1.6vh;}
+  .outro .handle{font-size:7vw; font-weight:700; letter-spacing:-.03em;
+    color:var(--ink); line-height:1.02; white-space:nowrap; margin-bottom:2.4vh;}
+  .outro .handle .at{color:#9FC93C;}
+  .outro .sub{font-size:4vw; font-weight:500; color:var(--ink-2); letter-spacing:.01em;}
+  @keyframes outroRise{
+    0%{opacity:0; transform:translateY(2.4vh) scale(.94);}
+    100%{opacity:1; transform:translateY(0) scale(1);}
+  }
+  .outro .pop-in{animation:outroRise .5s var(--ease) both;}
 </style>
 </head>
 <body>
@@ -99,6 +119,18 @@
   </div>
 
   <div class="throws" id="throws"></div>
+
+  <div class="outro" id="outro">
+    <div class="outro-inner">
+      <svg class="yt pop-in" viewBox="0 0 90 64" aria-hidden="true">
+        <rect width="90" height="64" rx="16" fill="#FF0033"/>
+        <path d="M36 20 L62 32 L36 44 Z" fill="#fff"/>
+      </svg>
+      <div class="cta pop-in">Full ranking on&nbsp;YouTube</div>
+      <div class="handle pop-in"><span class="at">@</span>scottplaystennis</div>
+      <div class="sub pop-in">Subscribe for the full video&nbsp;→</div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -151,7 +183,9 @@ const CANS = [
   }
 
   // Stagger the tosses so a few overlap on screen at once.
+  let tossing=true;
   function loop(){
+    if(!tossing) return;
     toss();
     setTimeout(loop,rand(420,820));
   }
@@ -160,6 +194,10 @@ const CANS = [
   setTimeout(()=>toss(DIADEM),500);
   setTimeout(()=>toss(DIADEM),7000);
   setTimeout(loop,1100);
+
+  // Stop the tosses and fade in the YouTube end card for the final stretch.
+  setTimeout(()=>{tossing=false;},12200);
+  setTimeout(()=>document.getElementById('outro').classList.add('show'),12300);
 })();
 </script>
 </body>
