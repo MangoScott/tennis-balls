@@ -116,21 +116,7 @@ const CANS = [
 (function(){
   "use strict";
 
-  // ---- Populate the chart so it reads as a finished ranking ----
-  // Roughly even spread across the six tiers (swap these around to match
-  // your real ranking before recording).
-  const TIERS = {
-    S:[0,1,2,3], A:[4,5,6,7], B:[8,9,10,11],
-    C:[12,13,14,15], D:[16,17,18,19], F:[20,21,22,23]
-  };
-  for(const [tier,idx] of Object.entries(TIERS)){
-    const row=document.querySelector('.tier[data-tier="'+tier+'"] .items');
-    idx.forEach(i=>{
-      const img=document.createElement('img');
-      img.src=CANS[i]; img.alt=''; img.draggable=false;
-      row.appendChild(img);
-    });
-  }
+  // ---- Empty chart: tier rows stay blank; balls only get tossed on top. ----
 
   // ---- Big tennis balls thrown on randomly, then fade away ----
   const throws=document.getElementById('throws');
