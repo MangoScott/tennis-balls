@@ -123,11 +123,13 @@ const CANS = [
   const rand=(a,b)=>a+Math.random()*(b-a);
   const pick=arr=>arr[Math.floor(Math.random()*arr.length)];
 
-  function toss(){
+  const DIADEM="tennis%20ball%20pics/23.png";   // Diadem Premier — featured ball
+
+  function toss(src){
     const wrap=document.createElement('div');
     wrap.className='throw';
     const img=document.createElement('img');
-    img.src=pick(CANS); img.alt='';
+    img.src=src||pick(CANS); img.alt='';
     wrap.appendChild(img);
 
     // random size (big), random position anywhere on screen
@@ -153,8 +155,11 @@ const CANS = [
     toss();
     setTimeout(loop,rand(420,820));
   }
-  // small head start so the chart is visible first
-  setTimeout(loop,500);
+  // small head start so the chart is visible first, then feature the
+  // Diadem ball up front and again midway so it always shows clearly.
+  setTimeout(()=>toss(DIADEM),500);
+  setTimeout(()=>toss(DIADEM),7000);
+  setTimeout(loop,1100);
 })();
 </script>
 </body>
