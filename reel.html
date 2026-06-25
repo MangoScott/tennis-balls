@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tennis Balls — Reel</title>
+<style>
+  :root{
+    --bg:#FBFBFD; --ink:#1D1D1F; --ink-2:#86868B; --hair:#EBEBF0;
+    --card:#FFFFFF;
+    --s:#D8A52E; --s-ink:#3A2A00;
+    --a:#45B16B; --a-ink:#FFFFFF;
+    --b:#95C23E; --b-ink:#2C3A05;
+    --c:#F3CC42; --c-ink:#463700;
+    --d:#EC8A33; --d-ink:#FFFFFF;
+    --f:#E14B3C; --f-ink:#FFFFFF;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI","Helvetica Neue",Arial,sans-serif;
+    background:#000; color:var(--ink); -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+  }
+
+  /* 9:16 vertical stage — fills the phone screen, centered for desktop preview */
+  .stage{
+    position:relative;
+    width:100vw; height:100dvh;
+    max-width:calc(100dvh * 9 / 16);
+    margin:0 auto;
+    background:var(--bg);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    padding:5.5vh 5vw 5vh;
+  }
+
+  /* ---- Header ---- */
+  header{flex:0 0 auto;text-align:center;margin-bottom:2.6vh;z-index:2;}
+  .kicker{font-size:3.4vw;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin-bottom:1.2vh;}
+  h1{font-size:8.6vw;font-weight:700;letter-spacing:-.03em;line-height:1.02;margin:0;}
+  h1 .em{color:#9FC93C;}
+
+  /* ---- Tier board ---- */
+  .board{
+    flex:1 1 auto; min-height:0; z-index:2;
+    background:var(--card);
+    border:1px solid var(--hair); border-radius:6vw; overflow:hidden;
+    box-shadow:0 1px 2px rgba(0,0,0,.04),0 3vh 6vh rgba(0,0,0,.07);
+    display:flex; flex-direction:column;
+  }
+  .tier{display:flex; align-items:stretch; gap:2.4vw; padding:1.1vh 2.4vw;
+    border-bottom:1px solid var(--hair); flex:1 1 0; min-height:0;}
+  .tier:last-child{border-bottom:none;}
+  .tile{flex:0 0 auto; width:13vw; max-width:9vh; aspect-ratio:1; align-self:center;
+    border-radius:3.5vw; display:flex; align-items:center; justify-content:center;
+    font-size:6.6vw; font-weight:700; letter-spacing:-.03em; user-select:none;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.04);}
+  .tier[data-tier="S"] .tile{background:var(--s);color:var(--s-ink);}
+  .tier[data-tier="A"] .tile{background:var(--a);color:var(--a-ink);}
+  .tier[data-tier="B"] .tile{background:var(--b);color:var(--b-ink);}
+  .tier[data-tier="C"] .tile{background:var(--c);color:var(--c-ink);}
+  .tier[data-tier="D"] .tile{background:var(--d);color:var(--d-ink);}
+  .tier[data-tier="F"] .tile{background:var(--f);color:var(--f-ink);}
+  .items{flex:1 1 auto; align-self:stretch; display:flex; flex-wrap:nowrap;
+    align-items:center; gap:1.4vw; min-width:0; overflow:hidden;}
+  .items img{height:7.4vh; width:auto; display:block;
+    filter:drop-shadow(0 .6vh 1.2vh rgba(0,0,0,.22));}
+
+  /* ---- Big thrown balls overlay ---- */
+  .throws{position:absolute; inset:0; z-index:5; pointer-events:none; overflow:hidden;}
+  .throw{position:absolute; will-change:transform,opacity; opacity:0;}
+  .throw img{width:100%; height:auto; display:block;
+    filter:drop-shadow(0 2vh 4vh rgba(0,0,0,.30));}
+
+  @keyframes pop{
+    0%   {opacity:0; transform:translate(-50%,-50%) scale(.3) rotate(var(--r0));}
+    18%  {opacity:1; transform:translate(-50%,-50%) scale(1.06) rotate(var(--r1));}
+    34%  {opacity:1; transform:translate(-50%,-50%) scale(1) rotate(var(--r1));}
+    100% {opacity:0; transform:translate(-50%,-58%) scale(1.18) rotate(var(--r2));}
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <header>
+    <div class="kicker">Worst&nbsp;→&nbsp;Best</div>
+    <h1>I ranked <span class="em">every</span><br>tennis ball</h1>
+  </header>
+
+  <div class="board" id="board">
+    <div class="tier" data-tier="S"><div class="tile">S</div><div class="items"></div></div>
+    <div class="tier" data-tier="A"><div class="tile">A</div><div class="items"></div></div>
+    <div class="tier" data-tier="B"><div class="tile">B</div><div class="items"></div></div>
+    <div class="tier" data-tier="C"><div class="tile">C</div><div class="items"></div></div>
+    <div class="tier" data-tier="D"><div class="tile">D</div><div class="items"></div></div>
+    <div class="tier" data-tier="F"><div class="tile">F</div><div class="items"></div></div>
+  </div>
+
+  <div class="throws" id="throws"></div>
+</div>
+
+<script>
+const CANS = [
+  "tennis%20ball%20pics/1.png","tennis%20ball%20pics/2.png","tennis%20ball%20pics/3.png",
+  "tennis%20ball%20pics/4.png","tennis%20ball%20pics/5.png","tennis%20ball%20pics/6.png",
+  "tennis%20ball%20pics/7.png","tennis%20ball%20pics/24.png","tennis%20ball%20pics/8.png",
+  "tennis%20ball%20pics/9.png","tennis%20ball%20pics/10.png","tennis%20ball%20pics/11.png",
+  "tennis%20ball%20pics/12.png","tennis%20ball%20pics/13.png","tennis%20ball%20pics/14.png",
+  "tennis%20ball%20pics/15.png","tennis%20ball%20pics/16.png","tennis%20ball%20pics/17.png",
+  "tennis%20ball%20pics/18.png","tennis%20ball%20pics/19.png","tennis%20ball%20pics/20.png",
+  "tennis%20ball%20pics/21.png","tennis%20ball%20pics/22.png","tennis%20ball%20pics/23.png"
+];
+
+(function(){
+  "use strict";
+
+  // ---- Populate the chart so it reads as a finished ranking ----
+  // Roughly even spread across the six tiers (swap these around to match
+  // your real ranking before recording).
+  const TIERS = {
+    S:[0,1,2,3], A:[4,5,6,7], B:[8,9,10,11],
+    C:[12,13,14,15], D:[16,17,18,19], F:[20,21,22,23]
+  };
+  for(const [tier,idx] of Object.entries(TIERS)){
+    const row=document.querySelector('.tier[data-tier="'+tier+'"] .items');
+    idx.forEach(i=>{
+      const img=document.createElement('img');
+      img.src=CANS[i]; img.alt=''; img.draggable=false;
+      row.appendChild(img);
+    });
+  }
+
+  // ---- Big tennis balls thrown on randomly, then fade away ----
+  const throws=document.getElementById('throws');
+  const rand=(a,b)=>a+Math.random()*(b-a);
+  const pick=arr=>arr[Math.floor(Math.random()*arr.length)];
+
+  function toss(){
+    const wrap=document.createElement('div');
+    wrap.className='throw';
+    const img=document.createElement('img');
+    img.src=pick(CANS); img.alt='';
+    wrap.appendChild(img);
+
+    // random size (big), random position anywhere on screen
+    const size=rand(34,58);                 // % of stage width
+    wrap.style.width=size+'vw';
+    wrap.style.left=rand(8,92)+'%';
+    wrap.style.top=rand(10,90)+'%';
+
+    // random rotation start / settle / drift
+    wrap.style.setProperty('--r0',rand(-40,40)+'deg');
+    wrap.style.setProperty('--r1',rand(-14,14)+'deg');
+    wrap.style.setProperty('--r2',rand(-30,30)+'deg');
+
+    const dur=rand(1700,2600);
+    wrap.style.animation='pop '+dur+'ms var(--ease) forwards';
+
+    throws.appendChild(wrap);
+    setTimeout(()=>wrap.remove(),dur+80);
+  }
+
+  // Stagger the tosses so a few overlap on screen at once.
+  function loop(){
+    toss();
+    setTimeout(loop,rand(420,820));
+  }
+  // small head start so the chart is visible first
+  setTimeout(loop,500);
+})();
+</script>
+</body>
+</html>
