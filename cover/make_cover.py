@@ -27,10 +27,32 @@ FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 TITLE = "DOUBLES HIGHLIGHTS"
 SUBTITLE = "& SOME SINGLES"
 
-INK = (10, 26, 18)
-LIME = (214, 242, 75)
-DEEP = (7, 30, 21)
-NIGHT = (5, 18, 30)
+# Colour schemes. Pick one with `python3 cover/make_cover.py <name>`; the
+# layout is identical in every case, only the palette moves.
+THEMES = {
+    # Deep grass green, tennis-ball lime accents.
+    "grass": dict(deep=(7, 30, 21), night=(5, 18, 30), glow=(92, 176, 74),
+                  vignette=(2, 10, 8), card_lo=(17, 52, 38), card_hi=(26, 74, 52),
+                  fade=(9, 30, 21), accent=(214, 242, 75), ink=(10, 26, 18),
+                  stroke=(6, 22, 14)),
+    # Hard court: US Open blue under the same lime.
+    "hard": dict(deep=(10, 30, 66), night=(5, 14, 34), glow=(46, 108, 220),
+                 vignette=(3, 8, 22), card_lo=(19, 43, 90), card_hi=(30, 62, 124),
+                 fade=(8, 20, 48), accent=(214, 242, 75), ink=(9, 20, 44),
+                 stroke=(7, 18, 42)),
+    # Neutral graphite, lets the lime and the shirts do all the talking.
+    "slate": dict(deep=(30, 32, 35), night=(14, 15, 17), glow=(84, 90, 97),
+                  vignette=(6, 6, 7), card_lo=(40, 43, 47), card_hi=(57, 61, 66),
+                  fade=(18, 19, 21), accent=(214, 242, 75), ink=(18, 20, 14),
+                  stroke=(12, 13, 14)),
+    # Clay court: terracotta with chalk-line cream.
+    "clay": dict(deep=(84, 38, 24), night=(42, 19, 12), glow=(206, 98, 52),
+                 vignette=(22, 9, 6), card_lo=(97, 46, 31), card_hi=(128, 63, 42),
+                 fade=(44, 19, 12), accent=(246, 238, 224), ink=(58, 26, 16),
+                 stroke=(40, 17, 11)),
+}
+DEFAULT_THEME = "hard"
+THEME = THEMES[DEFAULT_THEME]
 
 # Per player: source file, name, and the head measurements (hair top, chin,
 # face centre x) taken off the original photo. Head height is what keeps every
@@ -97,12 +119,12 @@ def fit_font(text, target_w, cap=400):
 
 def background():
     """Dark court gradient with a lime glow behind the row of players."""
-    bg = Image.new("RGB", (s(W), s(H)), DEEP)
+    bg = Image.new("RGB", (s(W), s(H)), THEME["deep"])
     grad = Image.new("L", (1, s(H)))
     for y in range(s(H)):
         grad.putpixel((0, y), int(255 * (y / s(H)) ** 0.85))
     bg = Image.composite(
-        Image.new("RGB", bg.size, NIGHT), bg, grad.resize(bg.size)
+        Image.new("RGB", bg.size, THEME["night"]), bg, grad.resize(bg.size)
     )
 
     # Soft lime pool of light sitting behind the cards.
@@ -111,7 +133,7 @@ def background():
     gd.ellipse([s(60), s(190), s(W - 60), s(H + 240)], fill=150)
     gd.ellipse([s(330), s(-260), s(W - 330), s(250)], fill=90)
     glow = glow.filter(ImageFilter.GaussianBlur(s(80)))
-    bg = Image.composite(Image.new("RGB", bg.size, (92, 176, 74)), bg, glow)
+    bg = Image.composite(Image.new("RGB", bg.size, THEME["glow"]), bg, glow)
 
     d = ImageDraw.Draw(bg, "RGBA")
 
@@ -134,7 +156,7 @@ def background():
     vig = Image.new("L", (s(W), s(H)), 255)
     ImageDraw.Draw(vig).ellipse([s(-330), s(-250), s(W + 330), s(H + 250)], fill=0)
     vig = vig.filter(ImageFilter.GaussianBlur(s(120)))
-    bg = Image.composite(Image.new("RGB", bg.size, (2, 10, 8)), bg, vig)
+    bg = Image.composite(Image.new("RGB", bg.size, THEME["vignette"]), bg, vig)
     return bg.convert("RGBA")
 
 
@@ -151,7 +173,7 @@ def draw_title(canvas):
                                 fill=(0, 0, 0, 190))
     canvas.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(s(9))))
     d.text((tx, ty), TITLE, font=title_font, fill=(255, 255, 255, 255),
-           stroke_width=s(3), stroke_fill=(6, 22, 14, 255))
+           stroke_width=s(3), stroke_fill=THEME["stroke"] + (255,))
 
     # Subtitle pill.
     sub_font = ImageFont.truetype(FONT, s(38))
@@ -160,9 +182,9 @@ def draw_title(canvas):
     pad_x, pad_y = s(30), s(15)
     pw, ph = sw + pad_x * 2, sh + pad_y * 2
     px, py = (s(W) - pw) // 2, s(26) + th + s(20)
-    d.rounded_rectangle([px, py, px + pw, py + ph], radius=ph // 2, fill=LIME)
+    d.rounded_rectangle([px, py, px + pw, py + ph], radius=ph // 2, fill=THEME["accent"])
     d.text((px + pad_x - sb[0], py + pad_y - sb[1]), SUBTITLE, font=sub_font,
-           fill=INK)
+           fill=THEME["ink"])
 
 
 def player_card(img, p):
@@ -171,8 +193,8 @@ def player_card(img, p):
     card = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
 
     # Card backdrop, a touch lighter than the page so faces separate from it.
-    back = Image.new("RGBA", (cw, ch), (17, 52, 38, 255))
-    top = Image.new("RGBA", (cw, ch), (26, 74, 52, 255))
+    back = Image.new("RGBA", (cw, ch), THEME["card_lo"] + (255,))
+    top = Image.new("RGBA", (cw, ch), THEME["card_hi"] + (255,))
     ramp = Image.new("L", (1, ch))
     for y in range(ch):
         ramp.putpixel((0, y), int(255 * (y / ch) ** 1.3))
@@ -209,15 +231,15 @@ def player_card(img, p):
     fade = Image.new("RGBA", (cw, s(70)), (0, 0, 0, 0))
     for y in range(s(70)):
         ImageDraw.Draw(fade).line([(0, y), (cw, y)],
-                                  fill=(9, 30, 21, int(215 * y / s(70))))
+                                  fill=THEME["fade"] + (int(215 * y / s(70)),))
     card.alpha_composite(fade, (0, plate_top - s(70)))
-    d.rectangle([0, plate_top, cw, ch], fill=LIME)
+    d.rectangle([0, plate_top, cw, ch], fill=THEME["accent"])
 
     name_font = fit_font(p["name"], cw - s(36), cap=s(40))
     nb = name_font.getbbox(p["name"])
     d.text(((cw - (nb[2] - nb[0])) // 2 - nb[0],
             plate_top + (s(PLATE_H) - (nb[3] - nb[1])) // 2 - nb[1]),
-           p["name"], font=name_font, fill=INK)
+           p["name"], font=name_font, fill=THEME["ink"])
 
     # Round the corners and add a hairline edge.
     mask = Image.new("L", (cw, ch), 0)
@@ -226,13 +248,13 @@ def player_card(img, p):
     card.putalpha(Image.composite(card.getchannel("A"), Image.new("L", (cw, ch), 0),
                                   mask))
     ImageDraw.Draw(card, "RGBA").rounded_rectangle(
-        [0, 0, cw - 1, ch - 1], radius=s(22), outline=(214, 242, 75, 70),
+        [0, 0, cw - 1, ch - 1], radius=s(22), outline=THEME["accent"] + (70,),
         width=s(2))
     return card
 
 
-def main():
-    imgs = cutouts()
+def render(imgs):
+    """Compose the whole cover at the current THEME and return it at 1280x720."""
     canvas = background()
     draw_title(canvas)
 
@@ -245,13 +267,26 @@ def main():
         canvas.alpha_composite(drop.filter(ImageFilter.GaussianBlur(s(14))))
         canvas.alpha_composite(card, (x, y))
 
-    out = canvas.convert("RGB").resize((W, H), Image.LANCZOS)
-    path = os.path.join(OUT_DIR, "youtube-cover.png")
-    out.save(path, optimize=True)
-    out.save(os.path.join(OUT_DIR, "youtube-cover.jpg"), quality=92,
-             subsampling=0)
-    print("wrote", path, out.size)
+    return canvas.convert("RGB").resize((W, H), Image.LANCZOS)
+
+
+def main(argv):
+    global THEME
+    names = argv[1:] or [DEFAULT_THEME]
+    if names == ["all"]:
+        names = list(THEMES)
+
+    imgs = cutouts()
+    for name in names:
+        THEME = THEMES[name]
+        out = render(imgs)
+        stem = "youtube-cover" if name == DEFAULT_THEME else "youtube-cover-" + name
+        path = os.path.join(OUT_DIR, stem + ".png")
+        out.save(path, optimize=True)
+        out.save(os.path.join(OUT_DIR, stem + ".jpg"), quality=92, subsampling=0)
+        print("wrote", path, out.size)
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(sys.argv)
