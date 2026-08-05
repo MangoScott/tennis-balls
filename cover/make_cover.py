@@ -24,8 +24,13 @@ SS = 2                    # supersample, downscaled at the end
 
 FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 
-TITLE = "DOUBLES HIGHLIGHTS"
-SUBTITLE = "& SOME SINGLES"
+# "Highlights: Doubles & Singles | USTA 4.5" split into three pieces. Setting
+# the whole thing as one line would shrink it to the point of being unreadable
+# at the size a thumbnail is actually browsed at, so the subject carries the
+# big type and the rest rides above it.
+KICKER = "HIGHLIGHTS"
+BADGE = "USTA 4.5"
+TITLE = "DOUBLES & SINGLES"
 
 # Colour schemes. Pick one with `python3 cover/make_cover.py <name>`; the
 # layout is identical in every case, only the palette moves.
@@ -160,13 +165,49 @@ def background():
     return bg.convert("RGBA")
 
 
+def tracked(d, xy, text, font, fill, tracking):
+    """Draw text with extra letter spacing, which PIL has no option for."""
+    x, y = xy
+    for ch in text:
+        d.text((x, y), ch, font=font, fill=fill)
+        x += font.getlength(ch) + tracking
+
+
+def tracked_width(text, font, tracking):
+    return sum(font.getlength(c) for c in text) + tracking * (len(text) - 1)
+
+
 def draw_title(canvas):
-    """Headline plus the lime subtitle pill. Returns nothing."""
-    title_font = fit_font(TITLE, s(1136))
+    """Kicker + level badge on one row, the subject in big type underneath."""
     d = ImageDraw.Draw(canvas)
+
+    # Row one: HIGHLIGHTS, then the USTA 4.5 badge, centred as a pair.
+    kick_font = ImageFont.truetype(FONT, s(34))
+    badge_font = ImageFont.truetype(FONT, s(31))
+    track = s(5)
+    kw = tracked_width(KICKER, kick_font, track)
+    bb = badge_font.getbbox(BADGE)
+    bpad_x, bpad_y = s(18), s(11)
+    bw = (bb[2] - bb[0]) + bpad_x * 2
+    bh = (bb[3] - bb[1]) + bpad_y * 2
+    gap = s(18)
+
+    row_y = s(30)
+    row_x = (s(W) - (kw + gap + bw)) // 2
+    kb = kick_font.getbbox(KICKER)
+    tracked(d, (row_x, row_y + (bh - (kb[3] - kb[1])) // 2 - kb[1]), KICKER,
+            kick_font, (255, 255, 255, 235), track)
+    bx = row_x + kw + gap
+    d.rounded_rectangle([bx, row_y, bx + bw, row_y + bh], radius=s(8),
+                        fill=THEME["accent"])
+    d.text((bx + bpad_x - bb[0], row_y + bpad_y - bb[1]), BADGE, font=badge_font,
+           fill=THEME["ink"])
+
+    # Row two: the headline, as large as the frame allows.
+    title_font = fit_font(TITLE, s(1150))
     tb = title_font.getbbox(TITLE)
-    tw, th = tb[2] - tb[0], tb[3] - tb[1]
-    tx, ty = (s(W) - tw) // 2 - tb[0], s(26) - tb[1]
+    tx = (s(W) - (tb[2] - tb[0])) // 2 - tb[0]
+    ty = row_y + bh + s(16) - tb[1]
 
     shadow = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
     ImageDraw.Draw(shadow).text((tx, ty + s(7)), TITLE, font=title_font,
@@ -174,17 +215,6 @@ def draw_title(canvas):
     canvas.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(s(9))))
     d.text((tx, ty), TITLE, font=title_font, fill=(255, 255, 255, 255),
            stroke_width=s(3), stroke_fill=THEME["stroke"] + (255,))
-
-    # Subtitle pill.
-    sub_font = ImageFont.truetype(FONT, s(38))
-    sb = sub_font.getbbox(SUBTITLE)
-    sw, sh = sb[2] - sb[0], sb[3] - sb[1]
-    pad_x, pad_y = s(30), s(15)
-    pw, ph = sw + pad_x * 2, sh + pad_y * 2
-    px, py = (s(W) - pw) // 2, s(26) + th + s(20)
-    d.rounded_rectangle([px, py, px + pw, py + ph], radius=ph // 2, fill=THEME["accent"])
-    d.text((px + pad_x - sb[0], py + pad_y - sb[1]), SUBTITLE, font=sub_font,
-           fill=THEME["ink"])
 
 
 def player_card(img, p):
