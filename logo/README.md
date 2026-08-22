@@ -1,50 +1,67 @@
-# @scottplaystennis — marks
+# scottplaystennis
 
-Three directions, all built from the same drawn element: one sinusoidal seam,
-the line you actually see on a ball at three-quarters.
+One circle. One cut.
+
+A tennis ball is two identical pieces. The mark is that fact and nothing
+else: a disc divided by a single curve into two congruent panels, each one
+the other turned a half turn. The curve is not drawn on the disc — it is
+missing from it, so there is no white line, no outline, no gradient and no
+shadow, and whatever sits behind the mark shows through.
+
+## Construction
+
+Two circular arcs of one radius, meeting at the centre of the disc with a
+shared tangent, so the curve passes through without a corner.
+
+| | |
+| --- | --- |
+| Rise | `0.340 R` |
+| Arc radius | `0.5377 R` — follows from the rise, `(0.25 + rise²) / (2 · rise)` |
+| Arc centres | `(±R/2, ∓0.1977 R)` |
+| Cut | `5.1%` of the diameter (`8.6%` in the tight cut) |
+| Rotation | 180°, exact |
+
+Nothing here was nudged by eye. Change the rise and everything else follows.
+
+## Colour
+
+| | Hex | |
+| --- | --- | --- |
+| Optic | `#D2F034` | The mark. The only saturated colour in the system. |
+| Ink | `#0B0B0C` | Type, reversed grounds. |
+| Paper | `#FAFAF8` | Light grounds, reversed mark. |
+
+One colour at a time — the mark is never two-tone.
+
+## Files
 
 | File | What it is |
 | --- | --- |
-| `avatar-ball.svg` | **A — avatar cut.** Ball bleeds to the edge, so a circle crop loses nothing. Use this one for profile pictures. |
-| `mark-ball.svg` | A, padded, for placing on a page next to other things. |
-| `mark-ball-flat.svg` | A in two flat colours — embroidery, stickers, one-colour print. |
-| `mark-can.svg` | B — three balls behind a tin, on court blue. |
-| `mark-badge.svg` | C — club crest with the handle set around the ring. |
-| `lockup.svg` | Mark + handle, dark type for light grounds. |
-| `lockup-dark.svg` | Mark + handle, reversed for dark grounds. |
+| `mark.svg` | **Primary.** Optic disc, cut transparent. This is the avatar. |
+| `mark-ink.svg` | Ink disc, for light grounds where the optic is too loud. |
+| `mark-paper.svg` | Reversed, for ink grounds. |
+| `mark-tight.svg` | Cut widened to 8.6%, for 32px and below. |
+| `mark-square.svg` | Optic on ink, square, for platforms that don't crop to a circle. |
+| `favicon.svg` | Tab icon. |
+| `wordmark.svg` | `scottplaystennis`, two weights, ink. |
+| `wordmark-paper.svg` | Reversed. |
+| `wordmark-at.svg` | With a dimmed `@`, where the handle needs to read as a handle. |
+| `lockup.svg` | Mark and wordmark, ink type. |
+| `lockup-paper.svg` | Mark and wordmark, reversed. |
 | `banner.svg` | Header, 1500×500. |
-| `favicon.svg` | Tab icon — seam scaled up so it survives 16px. |
-| `png/` | Rendered PNGs. |
+| `png/` | Rendered PNGs at the sizes the platforms ask for. |
 
-## Palette
+## Wordmark
 
-| | Hex | Role |
-| --- | --- | --- |
-| Optic | `#CFE04A` | Felt. The only saturated colour in the system. |
-| Court | `#0E4F7A` | Hard-court blue. Plates, banners. |
-| Baseline | `#10301F` | Deep court green. Badge ground. |
-| Chalk | `#FFFFFF` | Seams and reversed type. |
-| Ink | `#1D1D1F` | Wordmark on light ground. |
+Seventeen characters and no room for a space, so weight does the work a
+space would: **scott** at 600, `playstennis` at 400, tracked −2.2%. Set in
+Instrument Sans, called by name rather than converted to outlines — if you
+need files with no font dependency, open them in Figma or Illustrator and
+run Type → Create Outlines.
 
-Optic is the same green as the mark already in the `index.html` header, so the
-tier list and the accounts stay one family.
+## Regenerating
 
-## Type
-
-The wordmark is Inter SemiBold at −2% tracking, with a
-`-apple-system / SF Pro` fallback — close enough that the site header and the
-wordmark read as one thing. The SVGs reference the font by name rather than
-carrying outlines; if you need files with no font dependency, convert the text
-to paths in Figma or Illustrator (Type → Create Outlines).
-
-## Regenerating the PNGs
-
-The SVGs are the masters — render at whatever size you need. With Chrome:
-
-```sh
-chrome --headless --screenshot=out.png --window-size=1024,1024 \
-       --default-background-color=00000000 avatar-ball.svg
-```
-
-Chrome adds blank rows below the artwork when the window is taller than the
-image, so render into a page that sizes the `<img>` exactly, or crop after.
+The SVGs are the masters; render at any size. `scratchpad/export.sh` in the
+session used headless Chrome, which appends blank rows when the window is
+taller than the image — render into a page that sizes the `<img>` exactly,
+then trim.
