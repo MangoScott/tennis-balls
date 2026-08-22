@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Scott Plays Tennis">
+  <title>Scott Plays Tennis - badge mark</title>
+  <defs>
+    <path id="arc" d="M256 256m-182 0a182 182 0 0 1 364 0"/>
+    <path id="arcb" d="M256 256m-176 0a176 176 0 0 0 352 0"/>
+    <clipPath id="core"><circle cx="256" cy="292" r="104"/></clipPath>
+  </defs>
+
+  <circle cx="256" cy="256" r="256" fill="#10301F"/>
+  <circle cx="256" cy="256" r="222" fill="none" stroke="#C9DE4B" stroke-width="7"/>
+  <circle cx="256" cy="256" r="206" fill="none" stroke="#C9DE4B" stroke-opacity="0.35" stroke-width="2"/>
+
+  <text font-family="Inter,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="40" font-weight="700"
+        letter-spacing="5" fill="#C9DE4B" text-anchor="middle">
+    <textPath href="#arc" startOffset="50%" textLength="500" lengthAdjust="spacing">SCOTT PLAYS TENNIS</textPath>
+  </text>
+
+  <circle cx="256" cy="292" r="104" fill="#CFE04A"/>
+  <g clip-path="url(#core)"><path d="M146.8 292.0C182.2 225.4 220.6 225.4 256.0 292.0s38.5 66.6 109.2 0" fill="none" stroke="#FFFFFF" stroke-width="12"/></g>
+
+  <text font-family="Inter,'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="27" font-weight="700"
+        letter-spacing="6" fill="#C9DE4B" fill-opacity="0.85" text-anchor="middle">
+    <textPath href="#arcb" startOffset="50%">RANKING EVERY CAN</textPath>
+  </text>
+
+  <circle cx="104" cy="292" r="7" fill="#C9DE4B"/>
+  <circle cx="408" cy="292" r="7" fill="#C9DE4B"/>
+</svg>

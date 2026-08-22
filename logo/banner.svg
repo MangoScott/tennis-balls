@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500" role="img" aria-label="@scottplaystennis">
+  <title>@scottplaystennis - header banner</title>
+  <defs>
+    <clipPath id="lb"><circle cx="256" cy="256" r="232"/></clipPath>
+    <clipPath id="frame"><rect width="1500" height="500"/></clipPath>
+  </defs>
+  <rect width="1500" height="500" fill="#0E4F7A"/>
+  <g clip-path="url(#frame)" opacity="0.14">
+    <circle cx="1330" cy="80" r="300" fill="#CFE04A"/>
+    <circle cx="140" cy="470" r="220" fill="#CFE04A"/>
+  </g>
+  <!-- court line -->
+  <path d="M0 434h1500" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="4"/>
+  <g transform="translate(150,140) scale(0.4296875)">
+    <circle cx="256" cy="256" r="232" fill="#CFE04A"/>
+    <g clip-path="url(#lb)"><path d="M12.4 256.0C91.3 107.5 177.1 107.5 256.0 256.0s85.8 148.5 243.6 0" fill="none" stroke="#FFFFFF" stroke-width="22"/></g>
+  </g>
+  <text x="378" y="248" font-family="Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',Helvetica,Arial,sans-serif"
+        font-size="88" font-weight="600" letter-spacing="-2" fill="#FFFFFF">@scottplaystennis</text>
+  <text x="382" y="308" font-family="Inter,-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',Helvetica,Arial,sans-serif"
+        font-size="34" font-weight="500" letter-spacing="1.5" fill="#CFE04A">RANKING EVERY CAN OF BALLS</text>
+</svg>

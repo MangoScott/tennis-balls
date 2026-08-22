@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" width="900" height="200" role="img" aria-label="@scottplaystennis">
+  <title>@scottplaystennis - horizontal lockup, dark</title>
+  <defs><clipPath id="lb"><circle cx="256" cy="256" r="232"/></clipPath></defs>
+  <g transform="translate(32,32) scale(0.265625)">
+    <circle cx="256" cy="256" r="232" fill="#CFE04A"/>
+    <g clip-path="url(#lb)"><path d="M12.4 256.0C91.3 107.5 177.1 107.5 256.0 256.0s85.8 148.5 243.6 0" fill="none" stroke="#FFFFFF" stroke-width="22"/></g>
+  </g>
+  <text x="196" y="128" font-family="Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',Helvetica,Arial,sans-serif"
+        font-size="72" font-weight="600" letter-spacing="-1.6" fill="#FFFFFF">@scottplaystennis</text>
+</svg>
