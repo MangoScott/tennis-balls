@@ -27,7 +27,8 @@ mark.
 
 | File | What it is |
 | --- | --- |
-| `mark-avatar.svg` | **Use this as the profile picture.** Block inset so a circle crop takes nothing off the line ends. |
+| `png/avatar-photo-ring-800.png` | **Use this as the profile picture.** The portrait, treated. |
+| `mark-avatar.svg` | The block as an avatar, for later. Inset so a circle crop takes nothing off the line ends. |
 | `mark-avatar-invert.svg` | The same, reversed. |
 | `mark.svg` | Primary, edge to edge. White on black. |
 | `mark-invert.svg` | Black on white. |
@@ -60,6 +61,26 @@ band; phones show only a centred **1546×423** box. Every element in
 `youtube*.svg` sits inside that box, so nothing is lost on a phone.
 `youtube-safe-areas.svg` draws the guides — it is a reference, not an asset.
 The exported PNGs are under 130 KB, well inside YouTube's 6 MB limit.
+
+## The avatar
+
+The face stays in the circle; the logo does not go there. YouTube prints the
+channel name in text beside the avatar everywhere it appears, so a wordmark in
+that slot is the same words twice in 48 pixels — and the channel is a person
+doing a thing.
+
+`png/avatar-photo-*.png` is `tennis ball pics/me.jpg`, treated to match:
+a 480px crop of the 1080px source at `(350, 60)`, greyscale, contrast `1.9`,
+brightness `1.05`, and everything outside the inscribed circle painted white
+(the circle crop removes it anyway, and it keeps the square clean). The `-ring`
+files add a black ring so the white ground still has an edge on a light UI —
+that's the one to upload.
+
+Kruger's work is black-and-white photography with Futura on top. A hard mono
+portrait isn't a compromise with this identity; it's the other half of it.
+
+Switch to `mark-avatar.svg` only when guests' names start out-pulling yours in
+your own video titles.
 
 ## Scale
 
