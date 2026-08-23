@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500" role="img" aria-label="scott plays tennis">
+  <rect width="1500" height="500" fill="#000000"/>
+  <text x="405.0" y="179.5" textLength="690.0" lengthAdjust="spacingAndGlyphs" font-family="Jost,'Futura','Century Gothic',Helvetica,Arial,sans-serif" font-weight="700" font-size="192.8" fill="#FFFFFF">SCOTT</text>
+  <text x="405.0" y="317.8" textLength="690.0" lengthAdjust="spacingAndGlyphs" font-family="Jost,'Futura','Century Gothic',Helvetica,Arial,sans-serif" font-weight="700" font-size="192.8" fill="#FFFFFF">PLAYS</text>
+  <text x="405.0" y="456.0" textLength="690.0" lengthAdjust="spacingAndGlyphs" font-family="Jost,'Futura','Century Gothic',Helvetica,Arial,sans-serif" font-weight="700" font-size="192.8" fill="#FFFFFF">TENNIS</text>
+  <path d="M1364.0 48L1456 140.0M1456 48L1364.0 140.0" stroke="#2FD95B" stroke-width="20"/>
+  
+</svg>
