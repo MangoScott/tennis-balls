@@ -27,7 +27,7 @@ mark.
 
 | File | What it is |
 | --- | --- |
-| `png/avatar-photo-ring-800.png` | **Use this as the profile picture.** The portrait, treated. |
+| `png/avatar-photo-800.png` | **Use this as the profile picture.** The portrait, reframed. |
 | `mark-avatar.svg` | The block as an avatar, for later. Inset so a circle crop takes nothing off the line ends. |
 | `mark-avatar-invert.svg` | The same, reversed. |
 | `mark.svg` | Primary, edge to edge. White on black. |
@@ -69,15 +69,15 @@ channel name in text beside the avatar everywhere it appears, so a wordmark in
 that slot is the same words twice in 48 pixels — and the channel is a person
 doing a thing.
 
-`png/avatar-photo-*.png` is `tennis ball pics/me.jpg`, treated to match:
-a 480px crop of the 1080px source at `(350, 60)`, greyscale, contrast `1.9`,
-brightness `1.05`, and everything outside the inscribed circle painted white
-(the circle crop removes it anyway, and it keeps the square clean). The `-ring`
-files add a black ring so the white ground still has an edge on a light UI —
-that's the one to upload.
+`png/avatar-photo-*.png` is `tennis ball pics/me.jpg`, reframed: a 560px
+window on the 1080px source at `(285, 40)` so the face fills the circle
+instead of sitting in the top third, with `saturate(1.12) contrast(1.10)
+brightness(1.02)`. That is the whole treatment.
 
-Kruger's work is black-and-white photography with Futura on top. A hard mono
-portrait isn't a compromise with this identity; it's the other half of it.
+**It stays in colour.** A hard mono portrait to match the type looks like the
+obvious move and it is wrong — the identity is the black-and-white half, and
+the person in it should be the colour. At 48px the blue field is also what
+makes the avatar findable in a feed; a grey one disappears.
 
 Switch to `mark-avatar.svg` only when guests' names start out-pulling yours in
 your own video titles.
