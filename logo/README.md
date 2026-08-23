@@ -46,9 +46,9 @@ The block never changes. Only the right-hand column does, and it can be empty:
 
 | Suffix | Line |
 | --- | --- |
-| *(none)* | EVERY RACQUET. EVERY COURT. EVERY CAN. I MEAN EVERYTHING. |
+| *(none)* | EVERY PLAYER. EVERY LEVEL. EVERY COURT. I MEAN EVERYONE. |
+| `-you` | YOU PLAY. I PLAY YOU. I MEAN YOU. |
 | `-gear` | RACQUETS. STRINGS. SHOES. GRIPS. BALLS. COURTS. I MEAN ALL OF IT. |
-| `-you` | YOU PLAY. I TEST EVERYTHING. I MEAN EVERYTHING. |
 | `-plain` | *nothing — block and X only* |
 
 Each exists at both sizes: `banner-gear.svg` / `youtube-gear.svg`, and so on.
