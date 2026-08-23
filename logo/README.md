@@ -1,67 +1,63 @@
-# scottplaystennis
+# SCOTT PLAYS TENNIS
 
-One circle. One cut.
+The name is the logo. No symbol, no ball, no container.
 
-A tennis ball is two identical pieces. The mark is that fact and nothing
-else: a disc divided by a single curve into two congruent panels, each one
-the other turned a half turn. The curve is not drawn on the disc — it is
-missing from it, so there is no white line, no outline, no gradient and no
-shadow, and whatever sits behind the mark shows through.
+SCOTT, PLAYS, TENNIS — five, five and six characters. Stacked and forced to a
+single measure they close into a solid rectangle, and that rectangle is the
+mark. Read it as a shape first and a name second.
 
-## Construction
+Black and white only. The green appears once, as the X, and never inside the
+mark.
 
-Two circular arcs of one radius, meeting at the centre of the disc with a
-shared tangent, so the curve passes through without a corner.
+## Specification
 
 | | |
 | --- | --- |
-| Rise | `0.340 R` |
-| Arc radius | `0.5377 R` — follows from the rise, `(0.25 + rise²) / (2 · rise)` |
-| Arc centres | `(±R/2, ∓0.1977 R)` |
-| Cut | `5.1%` of the diameter (`8.6%` in the tight cut) |
-| Rotation | 180°, exact |
-
-Nothing here was nudged by eye. Change the rise and everything else follows.
-
-## Colour
-
-| | Hex | |
-| --- | --- | --- |
-| Optic | `#D2F034` | The mark. The only saturated colour in the system. |
-| Ink | `#0B0B0C` | Type, reversed grounds. |
-| Paper | `#FAFAF8` | Light grounds, reversed mark. |
-
-One colour at a time — the mark is never two-tone.
+| Lines | 3 |
+| Characters | 5 / 5 / 6 |
+| Measure | identical, forced (`textLength` + `lengthAdjust="spacingAndGlyphs"`) |
+| Leading | `1.02 ×` cap height, set solid |
+| Condensed to | ~58% of the natural width |
+| Type | Jost 700 (a Futura revival), cap height `0.7031 em` |
+| Ink | `#000000` |
+| Paper | `#FFFFFF` |
+| Green | `#2FD95B` — the X only |
 
 ## Files
 
 | File | What it is |
 | --- | --- |
-| `mark.svg` | **Primary.** Optic disc, cut transparent. This is the avatar. |
-| `mark-ink.svg` | Ink disc, for light grounds where the optic is too loud. |
-| `mark-paper.svg` | Reversed, for ink grounds. |
-| `mark-tight.svg` | Cut widened to 8.6%, for 32px and below. |
-| `mark-square.svg` | Optic on ink, square, for platforms that don't crop to a circle. |
+| `mark-avatar.svg` | **Use this as the profile picture.** Block inset so a circle crop takes nothing off the line ends. |
+| `mark-avatar-invert.svg` | The same, reversed. |
+| `mark.svg` | Primary, edge to edge. White on black. |
+| `mark-invert.svg` | Black on white. |
+| `mark-compact.svg` | `SCOTT.` — one line, one period, for 32px and below. |
 | `favicon.svg` | Tab icon. |
-| `wordmark.svg` | `scottplaystennis`, two weights, ink. |
-| `wordmark-paper.svg` | Reversed. |
-| `wordmark-at.svg` | With a dimmed `@`, where the handle needs to read as a handle. |
-| `lockup.svg` | Mark and wordmark, ink type. |
-| `lockup-paper.svg` | Mark and wordmark, reversed. |
+| `wordmark.svg` | One justified line, for anywhere with width and no height. |
+| `wordmark-invert.svg` | Reversed. |
+| `x.svg` | The green X. |
 | `banner.svg` | Header, 1500×500. |
-| `png/` | Rendered PNGs at the sizes the platforms ask for. |
+| `png/` | Rendered PNGs. |
 
-## Wordmark
+## Scale
 
-Seventeen characters and no room for a space, so weight does the work a
-space would: **scott** at 600, `playstennis` at 400, tracked −2.2%. Set in
-Instrument Sans, called by name rather than converted to outlines — if you
-need files with no font dependency, open them in Figma or Illustrator and
-run Type → Create Outlines.
+The three-line block holds down to about 48px. Below that the lines merge into
+three bars, so `mark-compact.svg` takes over — same type, one word.
+
+## The X
+
+One green mark in an otherwise binary system, taken from the struck-through
+words on the wall. It has a job: the stamp for a can that doesn't make the cut.
+Use it on a can, on a tier, on a word. Never on the logo.
+
+## Type
+
+Set in Jost, called by name rather than converted to outlines. For files with
+no font dependency, open them in Figma or Illustrator and run
+Type → Create Outlines.
 
 ## Regenerating
 
-The SVGs are the masters; render at any size. `scratchpad/export.sh` in the
-session used headless Chrome, which appends blank rows when the window is
-taller than the image — render into a page that sizes the `<img>` exactly,
-then trim.
+The SVGs are the masters. Line positions come from the measured cap height
+(`0.7031 em`), not from `line-height` — every line is placed on an explicit
+baseline and stretched to the measure, so the block stays solid at any size.

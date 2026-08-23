@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" width="720" height="200" role="img" aria-label="scottplaystennis">
-  <mask id="cutlk">
-    <circle cx="62" cy="100" r="54" fill="#fff"/>
-    <path d="M6.213 104.520L8.000 100.000A29.033 29.033 0 0 1 62.000 100.000A29.033 29.033 0 0 0 116.000 100.000L117.787 95.480" fill="none" stroke="#000" stroke-width="6.5"/>
-  </mask>
-  <circle cx="62" cy="100" r="54" fill="#D2F034" mask="url(#cutlk)"/>
-  <text x="152" y="123" font-family="'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="76" letter-spacing="-1.67" fill="#FAFAF8"><tspan font-weight="600">scott</tspan><tspan font-weight="400">playstennis</tspan></text>
-</svg>

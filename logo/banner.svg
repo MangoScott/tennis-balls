@@ -1,9 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500" role="img" aria-label="scottplaystennis">
-  <rect width="1500" height="500" fill="#0B0B0C"/>
-  <mask id="cutbn">
-    <circle cx="232" cy="250" r="96" fill="#fff"/>
-    <path d="M132.824 258.035L136.000 250.000A51.615 51.615 0 0 1 232.000 250.000A51.615 51.615 0 0 0 328.000 250.000L331.176 241.965" fill="none" stroke="#000" stroke-width="11"/>
-  </mask>
-  <circle cx="232" cy="250" r="96" fill="#D2F034" mask="url(#cutbn)"/>
-  <text x="352" y="272" font-family="'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="92" letter-spacing="-2.02" fill="#FAFAF8"><tspan font-weight="600">scott</tspan><tspan font-weight="400">playstennis</tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500" role="img" aria-label="scott plays tennis">
+  <rect width="1500" height="500" fill="#000000"/>
+  <text x="44.0" y="179.5" textLength="690.0" lengthAdjust="spacingAndGlyphs" font-family="Jost,'Futura','Century Gothic',Helvetica,Arial,sans-serif" font-weight="700" font-size="192.8" fill="#FFFFFF">SCOTT</text>
+  <text x="44.0" y="317.8" textLength="690.0" lengthAdjust="spacingAndGlyphs" font-family="Jost,'Futura','Century Gothic',Helvetica,Arial,sans-serif" font-weight="700" font-size="192.8" fill="#FFFFFF">PLAYS</text>
+  <text x="44.0" y="456.0" textLength="690.0" lengthAdjust="spacingAndGlyphs" font-family="Jost,'Futura','Century Gothic',Helvetica,Arial,sans-serif" font-weight="700" font-size="192.8" fill="#FFFFFF">TENNIS</text>
+  <path d="M1364.0 48L1456.0 140.0M1456.0 48L1364.0 140.0" stroke="#2FD95B" stroke-width="20"/>
+  <text x="794.0" y="229.9" textLength="662.0" lengthAdjust="spacingAndGlyphs" font-family="Jost,'Futura','Century Gothic',Helvetica,Arial,sans-serif" font-weight="700" font-size="105.1" fill="#FFFFFF">EVERY CAN.</text>
+  <text x="794.0" y="305.3" textLength="662.0" lengthAdjust="spacingAndGlyphs" font-family="Jost,'Futura','Century Gothic',Helvetica,Arial,sans-serif" font-weight="700" font-size="105.1" fill="#FFFFFF">RANKED.</text>
+  <text x="794.0" y="380.6" textLength="662.0" lengthAdjust="spacingAndGlyphs" font-family="Jost,'Futura','Century Gothic',Helvetica,Arial,sans-serif" font-weight="700" font-size="105.1" fill="#FFFFFF">S THROUGH F.</text>
+  <text x="794.0" y="456.0" textLength="662.0" lengthAdjust="spacingAndGlyphs" font-family="Jost,'Futura','Century Gothic',Helvetica,Arial,sans-serif" font-weight="700" font-size="105.1" fill="#FFFFFF">I MEAN EVERY CAN.</text>
 </svg>

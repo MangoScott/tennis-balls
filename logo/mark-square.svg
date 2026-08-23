@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="scottplaystennis">
-  <rect width="512" height="512" fill="#0B0B0C"/>
-  <mask id="cutsq">
-    <circle cx="256" cy="256" r="168" fill="#fff"/>
-    <path d="M82.441 270.061L88.000 256.000A90.326 90.326 0 0 1 256.000 256.000A90.326 90.326 0 0 0 424.000 256.000L429.559 241.939" fill="none" stroke="#000" stroke-width="18"/>
-  </mask>
-  <circle cx="256" cy="256" r="168" fill="#D2F034" mask="url(#cutsq)"/>
-</svg>
