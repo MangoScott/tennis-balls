@@ -27,8 +27,11 @@ mark.
 
 | File | What it is |
 | --- | --- |
-| `png/avatar-photo-800.png` | **Use this as the profile picture.** The portrait, reframed. |
-| `mark-avatar.svg` | The block as an avatar, for later. Inset so a circle crop takes nothing off the line ends. |
+| `png/avatar-ring-800.png` | **Use this as the profile picture.** The block, with a keyline. |
+| `mark-avatar-ring.svg` | The avatar. Keyline so it holds an edge in light and dark mode. |
+| `mark-avatar.svg` | The same block, no keyline. |
+| `watermark.svg` | White block on nothing — video watermark, thumbnails. |
+| `png/avatar-photo-800.png` | The portrait, reframed. About page, thumbnails, press. |
 | `mark-avatar-invert.svg` | The same, reversed. |
 | `mark.svg` | Primary, edge to edge. White on black. |
 | `mark-invert.svg` | Black on white. |
@@ -64,25 +67,26 @@ The exported PNGs are under 130 KB, well inside YouTube's 6 MB limit.
 
 ## The avatar
 
-The face stays in the circle; the logo does not go there. YouTube prints the
-channel name in text beside the avatar everywhere it appears, so a wordmark in
-that slot is the same words twice in 48 pixels — and the channel is a person
-doing a thing.
+The block goes in the circle. The channel name does sit beside the avatar as
+text, but it's small grey type people skim; a mark is a shape they learn
+without reading, and it compounds every scroll.
 
-`png/avatar-photo-*.png` is `tennis ball pics/me.jpg`, reframed: a 560px
-window on the 1080px source at `(285, 40)` so the face fills the circle
-instead of sitting in the top third, with `saturate(1.12) contrast(1.10)
-brightness(1.02)`. That is the whole treatment.
+It holds small because the block is distinctive as a **silhouette** — three
+stacked bars, flush on both edges. At 40px nobody reads the words, they
+recognise the shape, which is the job. `mark-compact.svg` takes over at
+favicon sizes.
 
-**It stays in colour.** A hard mono portrait to match the type looks like the
-obvious move and it is wrong — the identity is the black-and-white half, and
-the person in it should be the colour. At 48px the blue field is also what
-makes the avatar findable in a feed; a grey one disappears.
+**The keyline is structural, not decorative.** A black disc disappears into
+YouTube's dark mode and a white one disappears into light mode, and you only
+get to upload one file. A white ring just inside the crop (r=247, 10px) gives
+the mark an edge either way. Block inset to 330px of the 512px box so the ring
+has room; without the ring, `mark-avatar.svg` runs the block at 348.
 
-Switch to `mark-avatar.svg` only when guests' names start out-pulling yours in
-your own video titles.
+`png/avatar-photo-800.png` stays in the repo: `me.jpg` reframed to a 560px
+window at `(285, 40)`, slight saturation and contrast lift, colour kept. It
+belongs on the about page, in thumbnails, and anywhere with room for a person.
 
-## Scale
+## Scale## Scale
 
 The three-line block holds down to about 48px. Below that the lines merge into
 three bars, so `mark-compact.svg` takes over — same type, one word.
