@@ -1,11 +1,11 @@
 #!/bin/bash
 # Renders each option-*.html to a 1280x720 PNG and JPG in ./out
 cd "$(dirname "$0")"
-BIN=/opt/pw-browsers/chromium-1194/chrome-linux/chrome
+BIN=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell
 mkdir -p out
 for f in option-*.html; do
   n=${f%.html}
-  "$BIN" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=2 \
+  "$BIN" --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=2 \
     --window-size=1280,720 --screenshot="out/$n@2x.png" "file://$PWD/$f" >/dev/null 2>&1
 done
 python3 - <<'PY'
