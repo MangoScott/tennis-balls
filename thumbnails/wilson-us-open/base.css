@@ -1,0 +1,8 @@
+@font-face{font-family:"Anton";src:url("fonts/Anton.ttf");}
+@font-face{font-family:"Archivo Black";src:url("fonts/ArchivoBlack.ttf");}
+@font-face{font-family:"Barlow Condensed";src:url("fonts/BarlowCondensed.ttf");font-weight:800;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1280px;height:720px;overflow:hidden;background:#0d0f12}
+.t{position:relative;width:1280px;height:720px;overflow:hidden;font-family:"Anton","Archivo Black",Impact,sans-serif;color:#fff}
+.abs{position:absolute}
+.stroke{-webkit-text-stroke:0;text-shadow:0 6px 0 #000,0 0 24px rgba(0,0,0,.6)}
