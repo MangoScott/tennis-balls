@@ -2,6 +2,8 @@
 
 Most tennis balls suck, so I'm reviewing all of them one by one. First up: the Wilson US Open Extra Duty, my favorite ball of all time.
 
+Quick note on the "these aren't the real US Open balls" comments: you're right. The balls the pros play at the US Open are a different spec from the retail can, and I'd love to get my hands on some to test. But you can't buy those. Every ball in this series is one you can actually walk into a store and buy, and of everything on the shelf right now, this is the best recreational tennis ball on the market. So yes, it might suck compared to the tournament ball. It still beats everything else we can play with.
+
 Every ball in this series gets the same four tests: weight on a kitchen scale, bounce height against a yardstick, a hit test on court, and a post-play bounce test to see how much it drops off. Then I cut it open to look at the rubber.
 
 RESULTS
@@ -27,3 +29,9 @@ Next ball in the series: [NEXT BALL]
 Which ball should I test next? Let me know in the comments.
 
 #tennis #tennisballs #wilson #usopen #tennisgear #tennisreview
+
+---
+
+## Pinned first comment (alternative to putting it in the description)
+
+Seeing a lot of "the US Open balls the pros use are different and way better" comments, and you're right. The tournament ball is a different spec from what Wilson sells in the can, and I'd love to test one if anyone can get me a few. But we can't buy those. Every ball I'm reviewing is one you can actually go buy, and out of everything on the shelf, this is still the best recreational tennis ball you can get right now. Might suck compared to the real thing. Still beats everything else we're allowed to play with.
