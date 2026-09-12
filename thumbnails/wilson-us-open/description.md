@@ -1,4 +1,12 @@
-# Wilson US Open Extra Duty – Tennis Ball Review (Weight, Bounce, Hit Test + Cut Open)
+# Title
+
+60 Second Tennis Ball Review: Wilson US Open (Best Ball You Can Buy?)
+
+Alternatives:
+- 60 Second Tennis Ball Review: Wilson US Open Extra Duty
+- 60 Second Tennis Ball Review: Is Wilson US Open the Best Ball You Can Actually Buy?
+
+# Description
 
 Most tennis balls suck, so I'm reviewing all of them one by one. First up: the Wilson US Open Extra Duty, my favorite ball of all time.
 
