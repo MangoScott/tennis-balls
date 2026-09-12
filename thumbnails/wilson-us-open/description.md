@@ -1,10 +1,9 @@
 # Title
 
-60 Second Tennis Ball Review: Wilson US Open (Best Ball You Can Buy?)
+60 Second Tennis Ball Review: Wilson US Open Extra Duty | The Best Tennis Ball You Can Actually Buy?
 
-Alternatives:
-- 60 Second Tennis Ball Review: Wilson US Open Extra Duty
-- 60 Second Tennis Ball Review: Is Wilson US Open the Best Ball You Can Actually Buy?
+(100 characters, YouTube's maximum. Shorter alternative that survives truncation in feeds:
+60 Second Tennis Ball Review: Wilson US Open | Best Ball You Can Buy?)
 
 # Description
 
