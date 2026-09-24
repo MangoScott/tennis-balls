@@ -30,8 +30,10 @@
   .photo::after{ /* navy vignette, cools the warm room light */
     content:"";position:absolute;inset:0;
     background:
-      radial-gradient(ellipse 75% 85% at 55% 45%, transparent 50%, rgba(10,28,64,.7) 100%),
-      linear-gradient(to bottom, rgba(10,28,64,.15), transparent 30%, transparent 70%, rgba(10,28,64,.45));
+      radial-gradient(ellipse 50% 45% at 92% 8%, rgba(10,28,64,.85), transparent 100%),
+      radial-gradient(ellipse 55% 40% at 95% 100%, rgba(10,28,64,.9), transparent 100%),
+      radial-gradient(ellipse 70% 80% at 60% 50%, transparent 45%, rgba(10,28,64,.75) 100%),
+      linear-gradient(to bottom, rgba(10,28,64,.35), transparent 28%, transparent 68%, rgba(10,28,64,.55));
   }
 
   /* Dark slanted panel on the left */
@@ -46,7 +48,7 @@
     clip-path:polygon(95.5% 0, 100% 0, 80.8% 100%, 76.9% 100%);
   }
 
-  .copy{position:absolute;left:44px;top:70px;width:340px;}
+  .copy{position:absolute;left:44px;top:128px;width:340px;}
   .brand{
     font-family:"Inter",sans-serif;font-weight:900;font-size:28px;letter-spacing:.3em;
     color:var(--white);display:flex;align-items:center;gap:14px;
@@ -69,8 +71,8 @@
 
   /* Hook text in the empty ceiling space above the shoe */
   .hook{
-    position:absolute;right:44px;top:36px;
-    font-family:"Anton",sans-serif;font-size:136px;line-height:1;color:var(--optic);
+    position:absolute;right:64px;top:44px;
+    font-family:"Anton",sans-serif;font-size:128px;line-height:1;color:var(--optic);
     text-transform:uppercase;transform:rotate(-4deg);
     -webkit-text-stroke:12px var(--ink);paint-order:stroke fill;
     text-shadow:0 9px 0 var(--ink);
