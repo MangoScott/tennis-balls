@@ -7,14 +7,17 @@
   @font-face{font-family:"Anton";src:url("fonts/Anton.woff2") format("woff2");font-weight:400;}
   @font-face{font-family:"Inter";src:url("fonts/Inter-Black.woff2") format("woff2");font-weight:900;}
   :root{
-    --ink:#0E0F12;
-    --orange:#FF4B1F;
-    --yellow:#FFE234;
+    /* Channel palette, shared with the earlier covers */
+    --navy:#0A1C40;
+    --navy-2:#183672;
+    --optic:#DDF247;
+    --blue:#1F63E6;
     --white:#FFFFFF;
+    --ink:#000000;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{width:1280px;height:720px;overflow:hidden;background:var(--ink);}
-  .thumb{position:relative;width:1280px;height:720px;overflow:hidden;background:var(--ink);}
+  html,body{width:1280px;height:720px;overflow:hidden;background:var(--navy);}
+  .thumb{position:relative;width:1280px;height:720px;overflow:hidden;background:var(--navy);}
 
   /* Photo: full frame, nudged right so the panel clears the face */
   .photo{
@@ -22,55 +25,55 @@
     background:url("photo-smile.jpg") no-repeat;
     background-size:1279px 720px;
     background-position:24px 0;
-    filter:contrast(1.12) saturate(1.2) brightness(1.04);
+    filter:contrast(1.1) saturate(1.1) brightness(1.03);
   }
-  .photo::after{ /* vignette */
+  .photo::after{ /* navy vignette, cools the warm room light */
     content:"";position:absolute;inset:0;
     background:
-      radial-gradient(ellipse 75% 85% at 55% 45%, transparent 55%, rgba(0,0,0,.55) 100%),
-      linear-gradient(to bottom, transparent 70%, rgba(0,0,0,.35));
+      radial-gradient(ellipse 75% 85% at 55% 45%, transparent 50%, rgba(10,28,64,.7) 100%),
+      linear-gradient(to bottom, rgba(10,28,64,.15), transparent 30%, transparent 70%, rgba(10,28,64,.45));
   }
 
   /* Dark slanted panel on the left */
   .panel{
     position:absolute;top:0;left:0;height:720px;width:410px;
-    background:var(--ink);
+    background:linear-gradient(160deg, var(--navy-2) 0%, var(--navy) 70%);
     clip-path:polygon(0 0, 100% 0, 80% 100%, 0 100%);
   }
   .stripe{
     position:absolute;top:0;left:0;height:720px;width:426px;
-    background:var(--orange);
+    background:var(--optic);
     clip-path:polygon(95.5% 0, 100% 0, 80.8% 100%, 76.9% 100%);
   }
 
   .copy{position:absolute;left:44px;top:70px;width:340px;}
   .brand{
     font-family:"Inter",sans-serif;font-weight:900;font-size:28px;letter-spacing:.3em;
-    color:var(--white);opacity:.9;display:flex;align-items:center;gap:14px;
+    color:var(--white);display:flex;align-items:center;gap:14px;
   }
   .gems{display:flex;gap:5px;align-items:center;}
-  .gem{width:16px;height:26px;background:var(--orange);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
+  .gem{width:16px;height:26px;background:var(--optic);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
   .gem.sm{width:11px;height:18px;}
   .title{
     font-family:"Anton",sans-serif;color:var(--white);text-transform:uppercase;
     font-size:150px;line-height:.94;letter-spacing:.01em;margin-top:14px;
-    text-shadow:0 6px 0 rgba(0,0,0,.35);
+    text-shadow:0 7px 0 var(--ink);
   }
-  .title .burst{color:var(--orange);}
+  .title .burst{color:var(--optic);}
   .tag{
     display:inline-block;margin-top:30px;padding:10px 22px 12px;
-    background:var(--white);color:var(--ink);
+    background:var(--blue);color:var(--white);border:4px solid var(--white);border-radius:12px;
     font-family:"Inter",sans-serif;font-weight:900;font-size:34px;letter-spacing:.04em;
-    transform:rotate(-3deg);box-shadow:8px 8px 0 var(--orange);
+    transform:rotate(-3deg);box-shadow:0 7px 0 var(--ink);
   }
 
   /* Hook text in the empty ceiling space above the shoe */
   .hook{
     position:absolute;right:44px;top:36px;
-    font-family:"Anton",sans-serif;font-size:136px;line-height:1;color:var(--yellow);
+    font-family:"Anton",sans-serif;font-size:136px;line-height:1;color:var(--optic);
     text-transform:uppercase;transform:rotate(-4deg);
     -webkit-text-stroke:12px var(--ink);paint-order:stroke fill;
-    text-shadow:0 8px 0 rgba(0,0,0,.45);
+    text-shadow:0 9px 0 var(--ink);
   }
 </style>
 </head>
